@@ -1,0 +1,17 @@
+.agents/
+.codex/
+outputs/
+work/
+
+app/vendor/
+app/node_modules/
+app/.env
+app/storage/*.key
+app/storage/app/private/
+app/storage/framework/cache/*
+app/storage/framework/sessions/*
+app/storage/framework/testing/*
+app/storage/framework/views/*
+app/storage/logs/*
+
+app/public/hot
