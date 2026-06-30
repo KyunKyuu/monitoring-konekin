@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">PENGURUS IDEAL</div>
             <h1 class="page-title">Kandidat posisi dan statusnya</h1>
+            <p class="page-copy">Lihat siapa yang sedang diproyeksikan ke jabatan tertentu dan bagaimana status penetapannya.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $candidates->total() }}</strong> kandidat</span>
+            </div>
         </div>
         <a href="{{ route('position-candidates.create') }}" class="button button-primary">Tambah kandidat</a>
     </section>

@@ -2,10 +2,14 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">PROFILE MEMBER</div>
             <h1 class="page-title">{{ $member->name }}</h1>
             <p class="page-copy">{{ $member->code }} · {{ $member->target_role ?: 'Belum ada target pembinaan' }}</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $member->adikTingkat->count() }}</strong> adik tingkat</span>
+                <span class="metric-pill"><strong>{{ $member->activities->count() }}</strong> kegiatan terhubung</span>
+            </div>
         </div>
         <div class="hero-actions">
             <a href="{{ route('members.edit', $member) }}" class="button button-secondary">Edit</a>
@@ -19,7 +23,7 @@
         </div>
     </section>
 
-    <section class="content-grid">
+    <section class="content-grid content-grid-wide-left">
         <article class="feature-card">
             <div class="section-heading">
                 <div>
@@ -32,27 +36,47 @@
                 <div><span>Role</span><strong>{{ $member->target_role ?: '-' }}</strong></div>
                 <div><span>Prioritas</span><strong>{{ $member->note_priority }}</strong></div>
                 <div><span>Status</span><strong>{{ $member->status }}</strong></div>
+                <div><span>Kaka tingkat</span><strong>{{ $member->kakaTingkat?->name ? $member->kakaTingkat->name.' · '.$member->kakaTingkat->code : '-' }}</strong></div>
             </div>
         </article>
 
         <article class="feature-card">
             <div class="section-heading">
                 <div>
-                    <div class="mono-eyebrow">KEGIATAN</div>
-                    <h2>Riwayat terhubung</h2>
+                    <div class="mono-eyebrow">PENDEKATAN</div>
+                    <h2>Adik tingkat yang dihimpun</h2>
                 </div>
             </div>
             <div class="signal-list">
-                @forelse ($member->activities as $activity)
+                @forelse ($member->adikTingkat as $adik)
                     <div class="signal-row">
-                        <span class="tag-chip">{{ $activity->category }}</span>
-                        <p>{{ $activity->title }} · {{ $activity->scheduled_at?->format('d M Y H:i') }}</p>
+                        <span class="tag-chip">Adik</span>
+                        <p>{{ $adik->name }} · {{ $adik->code }}</p>
                     </div>
                 @empty
-                    <p class="empty-state">Belum ada kegiatan.</p>
+                    <p class="empty-state">Belum membawahi member lain.</p>
                 @endforelse
             </div>
         </article>
+    </section>
+
+    <section class="feature-card">
+        <div class="section-heading">
+            <div>
+                <div class="mono-eyebrow">KEGIATAN</div>
+                <h2>Riwayat terhubung</h2>
+            </div>
+        </div>
+        <div class="signal-list">
+            @forelse ($member->activities as $activity)
+                <div class="signal-row">
+                    <span class="tag-chip">{{ $activity->category }}</span>
+                    <p>{{ $activity->title }} · {{ $activity->scheduled_at?->format('d M Y H:i') }}</p>
+                </div>
+            @empty
+                <p class="empty-state">Belum ada kegiatan.</p>
+            @endforelse
+        </div>
     </section>
 
     <section class="content-grid">

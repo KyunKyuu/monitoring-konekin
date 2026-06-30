@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">KEUANGAN</div>
             <h1 class="page-title">Akun kas komunitas</h1>
+            <p class="page-copy">Pisahkan sumber dan penggunaan kas agar transaksi kegiatan dan operasional lebih terbaca.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $accounts->count() }}</strong> akun kas</span>
+            </div>
         </div>
         <a href="{{ route('cash-accounts.create') }}" class="button button-primary">Tambah akun kas</a>
     </section>

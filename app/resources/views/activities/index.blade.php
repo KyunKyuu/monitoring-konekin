@@ -2,9 +2,14 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">KEGIATAN</div>
             <h1 class="page-title">Agenda dan kelas komunitas</h1>
+            <p class="page-copy">Kelola kalender kegiatan, peserta, dan jalur monitoring yang terhubung ke profil anggota.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $activities->total() }}</strong> total kegiatan</span>
+                <span class="metric-pill"><strong>CSV</strong> import agenda cepat</span>
+            </div>
         </div>
         <div class="hero-actions">
             <a href="{{ route('activities.import-template') }}" class="button button-secondary">Download template</a>
@@ -14,7 +19,7 @@
     </section>
 
     <section class="feature-card">
-        <div class="section-stack">
+        <div class="stack-tight">
             <form method="POST" action="{{ route('activities.import') }}" enctype="multipart/form-data" class="form-grid">
                 @csrf
                 <div class="field field-full">
@@ -27,6 +32,8 @@
                 </div>
             </form>
         </div>
+
+        <hr class="section-divider">
 
         <div class="table-list">
             @forelse ($activities as $activity)

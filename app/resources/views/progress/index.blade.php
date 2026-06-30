@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">PROGRESS PEMBINAAN</div>
             <h1 class="page-title">Riwayat perkembangan member</h1>
+            <p class="page-copy">Catatan perkembangan untuk melihat anggota sudah sampai tahap mana dan apa tindak lanjut berikutnya.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $updates->total() }}</strong> total progress</span>
+            </div>
         </div>
         <a href="{{ route('progress.create') }}" class="button button-primary">Catat progress</a>
     </section>

@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IdealPositionController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MemberNoteController;
+use App\Http\Controllers\OperatorMonitoringController;
 use App\Http\Controllers\PositionCandidateController;
 use App\Http\Controllers\ProgressUpdateController;
 use App\Http\Controllers\SubcategoryController;
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:super_admin,mentor')->group(function () {
         Route::get('members-import-template', [MemberController::class, 'downloadTemplate'])->name('members.import-template');
         Route::post('members-import', [MemberController::class, 'import'])->name('members.import');
+        Route::get('member-hierarchy', [MemberController::class, 'hierarchy'])->name('members.hierarchy');
+        Route::patch('member-hierarchy/{member}', [MemberController::class, 'updateHierarchy'])->name('members.hierarchy.update');
         Route::get('activities-import-template', [ActivityController::class, 'downloadTemplate'])->name('activities.import-template');
         Route::post('activities-import', [ActivityController::class, 'import'])->name('activities.import');
         Route::resource('members', MemberController::class)->except(['destroy']);
@@ -46,6 +49,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware('role:super_admin')->group(function () {
+        Route::get('operator-monitoring', OperatorMonitoringController::class)->name('operators.index');
         Route::delete('members/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
         Route::delete('activities/{activity}', [ActivityController::class, 'destroy'])->name('activities.destroy');
     });

@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">TARGET PEMBINAAN</div>
             <h1 class="page-title">Arah pengembangan member</h1>
+            <p class="page-copy">Tetapkan peran yang dibidik, fungsi pembinaan, dan next action yang harus dikerjakan pengurus.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $targets->total() }}</strong> total target</span>
+            </div>
         </div>
         <a href="{{ route('targets.create') }}" class="button button-primary">Tambah target</a>
     </section>

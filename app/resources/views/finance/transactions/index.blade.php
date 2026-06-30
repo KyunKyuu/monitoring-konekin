@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">KEUANGAN</div>
             <h1 class="page-title">Mutasi kas masuk dan keluar</h1>
+            <p class="page-copy">Lacak pemasukan dan pengeluaran kas yang dipakai untuk agenda maupun kebutuhan operasional.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $transactions->total() }}</strong> total transaksi</span>
+            </div>
         </div>
         <a href="{{ route('cash-transactions.create') }}" class="button button-primary">Tambah transaksi</a>
     </section>

@@ -7,6 +7,15 @@
     <input type="text" name="name" value="{{ old('name', $member->name ?? '') }}" required>
 </div>
 <div class="field">
+    <span>Kaka tingkat</span>
+    <select name="kaka_tingkat_id">
+        <option value="">Belum ditentukan</option>
+        @foreach ($kakaTingkatOptions as $option)
+            <option value="{{ $option->id }}" @selected(old('kaka_tingkat_id', $member->kaka_tingkat_id ?? '') == $option->id)>{{ $option->name }} · {{ $option->code }}</option>
+        @endforeach
+    </select>
+</div>
+<div class="field">
     <span>Gender</span>
     <select name="gender">
         <option value="">Pilih</option>

@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">KEUANGAN</div>
             <h1 class="page-title">Tagihan iuran member</h1>
+            <p class="page-copy">Pantau tagihan per periode untuk membaca disiplin iuran dan kesiapan tanggung jawab anggota.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $contributions->total() }}</strong> total tagihan</span>
+            </div>
         </div>
         <div class="hero-actions">
             <a href="{{ route('contributions.create') }}" class="button button-primary">Buat tagihan</a>

@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">MASTER AKTIVITAS</div>
             <h1 class="page-title">Sub kategori kegiatan</h1>
+            <p class="page-copy">Sub kategori membantu detail klasifikasi aktivitas agar evaluasi per jenis kegiatan lebih rapi.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $subcategories->count() }}</strong> sub kategori</span>
+            </div>
         </div>
         <a href="{{ route('subcategories.create') }}" class="button button-primary">Tambah sub kategori</a>
     </section>

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -14,6 +15,7 @@ class Member extends Model
     protected $fillable = [
         'code',
         'name',
+        'kaka_tingkat_id',
         'gender',
         'status',
         'target_role',
@@ -51,5 +53,15 @@ class Member extends Model
     public function positionCandidates(): HasMany
     {
         return $this->hasMany(PositionCandidate::class)->latest();
+    }
+
+    public function kakaTingkat(): BelongsTo
+    {
+        return $this->belongsTo(Member::class, 'kaka_tingkat_id');
+    }
+
+    public function adikTingkat(): HasMany
+    {
+        return $this->hasMany(Member::class, 'kaka_tingkat_id')->orderBy('name');
     }
 }

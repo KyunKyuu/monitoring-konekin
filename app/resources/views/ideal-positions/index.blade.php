@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">PENGURUS IDEAL</div>
             <h1 class="page-title">Struktur jabatan ideal</h1>
+            <p class="page-copy">Daftar posisi yang ingin dibangun beserta kebutuhan orang dan jalur kandidatnya.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $positions->count() }}</strong> posisi ideal</span>
+            </div>
         </div>
         <div class="hero-actions">
             <a href="{{ route('ideal-positions.create') }}" class="button button-primary">Tambah posisi</a>

@@ -2,9 +2,13 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">MASTER AKTIVITAS</div>
             <h1 class="page-title">Kategori kegiatan</h1>
+            <p class="page-copy">Master kategori dipakai untuk menjaga struktur kegiatan tetap konsisten dan bisa dipantau lintas agenda.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $categories->count() }}</strong> kategori</span>
+            </div>
         </div>
         <div class="hero-actions">
             <a href="{{ route('subcategories.index') }}" class="button button-secondary">Sub kategori</a>

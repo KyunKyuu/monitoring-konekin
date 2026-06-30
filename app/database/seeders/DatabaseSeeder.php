@@ -97,6 +97,10 @@ class DatabaseSeeder extends Seeder
                 'status' => 'active',
             ]));
 
+            $members[1]->update(['kaka_tingkat_id' => $members[2]->id]);
+            $members[3]->update(['kaka_tingkat_id' => $members[2]->id]);
+            $members[2]->update(['kaka_tingkat_id' => $members[0]->id]);
+
             $admin = User::where('username', 'admin')->firstOrFail();
 
             $activity = Activity::create([

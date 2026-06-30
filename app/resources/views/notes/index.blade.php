@@ -2,9 +2,14 @@
 
 @section('dashboard-content')
     <section class="page-header">
-        <div>
+        <div class="page-header-block">
             <div class="mono-eyebrow">MONITORING</div>
             <h1 class="page-title">Note evaluasi anggota</h1>
+            <p class="page-copy">Catatan evaluasi universal maupun individual untuk menjaga kesinambungan pembinaan.</p>
+            <div class="inline-metrics">
+                <span class="metric-pill"><strong>{{ $notes->total() }}</strong> total note</span>
+                <span class="metric-pill"><strong>{{ $tag ?: 'semua tag' }}</strong> filter aktif</span>
+            </div>
         </div>
         <a href="{{ route('notes.create') }}" class="button button-primary">Tambah note</a>
     </section>
