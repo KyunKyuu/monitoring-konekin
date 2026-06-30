@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['bodyClass' => trim(($bodyClass ?? '').' dashboard-page')])
 
 @section('content')
     @php($user = auth()->user())

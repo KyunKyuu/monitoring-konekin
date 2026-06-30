@@ -1051,11 +1051,187 @@ input {
     border-radius: 6px;
 }
 
+.dashboard-page .dashboard-shell {
+    padding: 16px;
+}
+
+.dashboard-page .sidebar-shell {
+    grid-template-columns: 248px minmax(0, 1fr);
+    gap: 18px;
+}
+
+.dashboard-page .dashboard-main {
+    gap: 16px;
+}
+
+.dashboard-page .content-topbar {
+    padding: 2px 2px 0;
+}
+
+.dashboard-page .content-title {
+    font-size: 26px;
+}
+
 .dashboard-page .page-title,
 .dashboard-page .content-title,
 .dashboard-page .auth-card h2,
 .dashboard-page .section-heading h2 {
     letter-spacing: 0;
+}
+
+.dashboard-page .page-title {
+    font-size: 30px;
+}
+
+.dashboard-page .page-header {
+    align-items: flex-start;
+    padding: 4px 2px 0;
+}
+
+.dashboard-page .page-copy {
+    max-width: 760px;
+    margin: 0;
+    font-size: 14px;
+}
+
+.dashboard-page .hero-actions {
+    margin-top: 0;
+    gap: 8px;
+}
+
+.dashboard-page .feature-card,
+.dashboard-page .stat-card,
+.dashboard-page .priority-card,
+.dashboard-page .signal-card,
+.dashboard-page .auth-card,
+.dashboard-page .hero-gradient-card {
+    border-radius: 8px;
+    box-shadow: none;
+    background: var(--surface);
+}
+
+.dashboard-page .feature-card,
+.dashboard-page .stat-card {
+    padding: 18px;
+}
+
+.dashboard-page .section-heading {
+    margin-bottom: 12px;
+}
+
+.dashboard-page .section-heading h2 {
+    margin-top: 4px;
+    font-size: 20px;
+}
+
+.dashboard-page .content-grid,
+.dashboard-page .stats-grid {
+    gap: 12px;
+}
+
+.dashboard-page .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.dashboard-page .stat-card strong {
+    margin: 8px 0 4px;
+    font-size: 24px;
+    letter-spacing: 0;
+}
+
+.dashboard-page .stat-card span,
+.dashboard-page .stat-card p {
+    font-size: 12px;
+}
+
+.dashboard-page .table-list,
+.dashboard-page .detail-list,
+.dashboard-page .priority-list,
+.dashboard-page .signal-list,
+.dashboard-page .agenda-list {
+    gap: 0;
+}
+
+.dashboard-page .table-row,
+.dashboard-page .priority-card,
+.dashboard-page .signal-row,
+.dashboard-page .agenda-row,
+.dashboard-page .detail-list div {
+    border-width: 0;
+    border-top: 1px solid var(--hairline-soft);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.dashboard-page .table-row:first-child,
+.dashboard-page .priority-card:first-child,
+.dashboard-page .signal-row:first-child,
+.dashboard-page .agenda-row:first-child {
+    border-top: 0;
+}
+
+.dashboard-page .table-row,
+.dashboard-page .agenda-row,
+.dashboard-page .signal-row {
+    padding: 12px 0;
+}
+
+.dashboard-page .priority-card {
+    padding: 14px 0;
+}
+
+.dashboard-page .table-row:hover,
+.dashboard-page .table-row-link:hover {
+    border-color: var(--hairline-soft);
+    background: #faf9f6;
+}
+
+.dashboard-page .form-grid {
+    gap: 14px;
+}
+
+.dashboard-page .field input,
+.dashboard-page .field select,
+.dashboard-page .toolbar select,
+.dashboard-page .field textarea,
+.dashboard-page .toolbar input,
+.dashboard-page .inline-assign-form select {
+    border-radius: 6px;
+    background: #fbfbfa;
+}
+
+.dashboard-page .checkbox-card,
+.dashboard-page .calendar-day,
+.dashboard-page .calendar-event,
+.dashboard-page .hierarchy-card,
+.dashboard-page .hierarchy-node,
+.dashboard-page .flow-item {
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+.dashboard-page .calendar-grid,
+.dashboard-page .calendar-weeks {
+    gap: 8px;
+}
+
+.dashboard-page .calendar-day {
+    min-height: 150px;
+}
+
+.dashboard-page .status-pill,
+.dashboard-page .tag-chip,
+.dashboard-page .metric-pill {
+    height: auto;
+    min-height: 26px;
+    border-radius: 6px;
+    background: #f7f6f3;
+}
+
+.dashboard-page .alert {
+    margin-top: 0;
+    border-radius: 6px;
 }
 
 .notion-page-header {
