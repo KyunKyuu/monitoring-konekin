@@ -1032,13 +1032,76 @@ input {
 }
 
 .dashboard-page .sidebar-link {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
     border-radius: 6px;
-    padding: 9px 10px;
+    padding: 8px 10px;
 }
 
 .dashboard-page .sidebar-link.active {
     background: #eceae5;
     color: var(--ink);
+}
+
+.dashboard-page .sidebar-link span {
+    color: var(--mute);
+    font-size: 14px;
+    text-align: center;
+}
+
+.dashboard-page .sidebar-link strong {
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dashboard-page .sidebar-link.active span {
+    color: var(--ink);
+}
+
+.dashboard-page .sidebar-search-wrap {
+    margin-top: -6px;
+}
+
+.dashboard-page .sidebar-search {
+    width: 100%;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid var(--hairline);
+    border-radius: 7px;
+    background: #fbfaf8;
+    color: var(--ink);
+    font-size: 13px;
+}
+
+.dashboard-page .sidebar-search:focus {
+    outline: 2px solid #d8d4cc;
+    outline-offset: 1px;
+    background: var(--surface);
+}
+
+.dashboard-page .sidebar-link[hidden] {
+    display: none;
+}
+
+.dashboard-page .sidebar-help {
+    display: grid;
+    gap: 6px;
+    padding: 10px;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    background: #fbfaf8;
+}
+
+.dashboard-page .sidebar-help p {
+    margin: 0;
+    color: var(--body);
+    font-size: 12px;
+    line-height: 1.45;
 }
 
 .dashboard-page .brand-mark,
@@ -1065,11 +1128,25 @@ input {
 }
 
 .dashboard-page .content-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    align-items: center;
     padding: 2px 2px 0;
+    border-bottom: 1px solid transparent;
+    background: linear-gradient(180deg, rgba(251, 251, 250, 0.96), rgba(251, 251, 250, 0.72));
+    backdrop-filter: blur(10px);
 }
 
 .dashboard-page .content-title {
     font-size: 26px;
+}
+
+.dashboard-page .topbar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
 }
 
 .dashboard-page .page-title,
@@ -1104,14 +1181,21 @@ input {
 .dashboard-page .priority-card,
 .dashboard-page .signal-card,
 .dashboard-page .auth-card,
-.dashboard-page .hero-gradient-card {
+.dashboard-page .hero-gradient-card,
+.dashboard-page .calendar-panel,
+.dashboard-page .chart-card,
+.dashboard-page .form-card,
+.dashboard-page .import-card,
+.dashboard-page .finance-card {
     border-radius: 8px;
     box-shadow: none;
     background: var(--surface);
 }
 
 .dashboard-page .feature-card,
-.dashboard-page .stat-card {
+.dashboard-page .stat-card,
+.dashboard-page .form-card,
+.dashboard-page .import-card {
     padding: 18px;
 }
 
@@ -1164,6 +1248,14 @@ input {
     box-shadow: none;
 }
 
+.dashboard-page .table-row {
+    grid-template-columns: minmax(220px, 1.35fr) repeat(auto-fit, minmax(128px, 0.8fr));
+}
+
+.dashboard-page .table-row > .row-actions {
+    justify-self: end;
+}
+
 .dashboard-page .table-row:first-child,
 .dashboard-page .priority-card:first-child,
 .dashboard-page .signal-row:first-child,
@@ -1174,7 +1266,7 @@ input {
 .dashboard-page .table-row,
 .dashboard-page .agenda-row,
 .dashboard-page .signal-row {
-    padding: 12px 0;
+    padding: 13px 6px;
 }
 
 .dashboard-page .priority-card {
@@ -1182,9 +1274,19 @@ input {
 }
 
 .dashboard-page .table-row:hover,
-.dashboard-page .table-row-link:hover {
+.dashboard-page .table-row-link:hover,
+.dashboard-page .notion-list-row:hover,
+.dashboard-page .agenda-row:hover,
+.dashboard-page .priority-card:hover {
     border-color: var(--hairline-soft);
     background: #faf9f6;
+}
+
+.dashboard-page .table-row.is-pressed,
+.dashboard-page .notion-list-row.is-pressed,
+.dashboard-page .agenda-row.is-pressed,
+.dashboard-page .priority-card.is-pressed {
+    transform: scale(0.995);
 }
 
 .dashboard-page .form-grid {
@@ -1199,6 +1301,18 @@ input {
 .dashboard-page .inline-assign-form select {
     border-radius: 6px;
     background: #fbfbfa;
+}
+
+.dashboard-page .field input:focus,
+.dashboard-page .field select:focus,
+.dashboard-page .toolbar select:focus,
+.dashboard-page .field textarea:focus,
+.dashboard-page .toolbar input:focus,
+.dashboard-page .inline-assign-form select:focus {
+    outline: 2px solid #d8d4cc;
+    outline-offset: 1px;
+    border-color: #c9c4ba;
+    background: var(--surface);
 }
 
 .dashboard-page .checkbox-card,
@@ -1232,6 +1346,24 @@ input {
 .dashboard-page .alert {
     margin-top: 0;
     border-radius: 6px;
+}
+
+.dashboard-page .row-actions {
+    gap: 8px;
+}
+
+.dashboard-page .table-action-link,
+.dashboard-page .button-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 8px;
+    border-radius: 6px;
+}
+
+.dashboard-page .table-action-link:hover,
+.dashboard-page .button-link:hover {
+    background: #f1efea;
 }
 
 .notion-page-header {
@@ -1284,6 +1416,10 @@ input {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
+}
+
+.notion-columns.notion-columns-single {
+    grid-template-columns: minmax(0, 1fr);
 }
 
 .notion-section {

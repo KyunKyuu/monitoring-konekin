@@ -44,7 +44,9 @@
             <div class="field field-full">
                 <span>Pilih member yang ikut</span>
                 <div class="checkbox-grid">
-                    @php($selectedMembers = old('member_ids', $activity->members->pluck('id')->all()))
+                    @php
+                        $selectedMembers = old('member_ids', $activity->members->pluck('id')->all());
+                    @endphp
                     @foreach ($members as $member)
                         <label class="checkbox-card">
                             <input type="checkbox" name="member_ids[]" value="{{ $member->id }}" @checked(in_array($member->id, $selectedMembers))>
