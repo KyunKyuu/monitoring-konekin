@@ -393,17 +393,42 @@ input {
 
 .content-topbar {
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: space-between;
     gap: 16px;
     padding: 6px 4px 0;
 }
 
-.content-title {
-    margin: 8px 0 0;
-    font-size: 32px;
-    line-height: 1.05;
-    letter-spacing: -0.05em;
+.content-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--mute);
+    font-size: 13px;
+}
+
+.content-nav a,
+.content-nav strong {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 10px;
+    border-radius: var(--radius-sm);
+}
+
+.content-nav a {
+    color: var(--body);
+}
+
+.content-nav a:hover {
+    background: var(--hairline-soft);
+    color: var(--ink);
+}
+
+.content-nav strong {
+    background: var(--hairline-soft);
+    color: var(--ink);
+    font-weight: 500;
 }
 
 .page-header {
@@ -1271,21 +1296,27 @@ input {
     top: 0;
     z-index: 5;
     align-items: center;
-    padding: 2px 2px 0;
-    border-bottom: 1px solid transparent;
+    min-height: 42px;
+    padding: 4px 2px 6px;
+    border-bottom: 1px solid var(--hairline-soft);
     background: linear-gradient(180deg, rgba(251, 251, 250, 0.96), rgba(251, 251, 250, 0.72));
     backdrop-filter: blur(10px);
 }
 
-.dashboard-page .content-title {
-    font-size: 26px;
-}
-
 .dashboard-page .page-title,
-.dashboard-page .content-title,
 .dashboard-page .auth-card h2,
 .dashboard-page .section-heading h2 {
     letter-spacing: 0;
+}
+
+.dashboard-page .content-nav {
+    font-size: 13px;
+}
+
+.dashboard-page .content-nav a,
+.dashboard-page .content-nav strong {
+    min-height: 30px;
+    border-radius: 6px;
 }
 
 .dashboard-page .page-title {

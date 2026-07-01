@@ -71,10 +71,13 @@
 
         <main class="dashboard-main panel-main">
             <header class="content-topbar">
-                <div>
-                    <div class="mono-eyebrow">PANEL PENGURUS</div>
-                    <h1 class="content-title">{{ $title ?? 'Dashboard' }}</h1>
-                </div>
+                <nav class="content-nav" aria-label="Navigasi halaman">
+                    <a href="{{ route('dashboard') }}">Dashboard</a>
+                    @if (! request()->routeIs('dashboard'))
+                        <span>/</span>
+                        <strong>{{ $title ?? 'Halaman' }}</strong>
+                    @endif
+                </nav>
             </header>
 
             @if (session('status'))
