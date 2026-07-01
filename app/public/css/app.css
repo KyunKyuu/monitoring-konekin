@@ -1032,23 +1032,14 @@ input {
 }
 
 .dashboard-page .sidebar-link {
-    display: grid;
-    grid-template-columns: 22px minmax(0, 1fr);
-    align-items: center;
-    gap: 8px;
+    display: block;
     border-radius: 6px;
-    padding: 8px 10px;
+    padding: 9px 10px;
 }
 
 .dashboard-page .sidebar-link.active {
     background: #eceae5;
     color: var(--ink);
-}
-
-.dashboard-page .sidebar-link span {
-    color: var(--mute);
-    font-size: 14px;
-    text-align: center;
 }
 
 .dashboard-page .sidebar-link strong {
@@ -1057,10 +1048,6 @@ input {
     font-weight: 500;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.dashboard-page .sidebar-link.active span {
-    color: var(--ink);
 }
 
 .dashboard-page .sidebar-search-wrap {
@@ -1140,13 +1127,6 @@ input {
 
 .dashboard-page .content-title {
     font-size: 26px;
-}
-
-.dashboard-page .topbar-actions {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 8px;
 }
 
 .dashboard-page .page-title,

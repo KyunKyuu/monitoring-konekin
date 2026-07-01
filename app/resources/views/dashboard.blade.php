@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['title' => 'Dashboard Pengurus', 'bodyClass' => 'dashboard-page'])
+@extends('layouts.dashboard', ['title' => 'Dashboard Pengurus'])
 
 @section('dashboard-content')
     @php

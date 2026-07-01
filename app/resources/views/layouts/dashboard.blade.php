@@ -3,18 +3,8 @@
 @section('content')
     @php
         $user = auth()->user();
-        $quickActions = [];
-
-        if ($user?->hasAnyRole(['super_admin', 'mentor'])) {
-            $quickActions[] = ['label' => 'Input kegiatan', 'route' => route('activities.create'), 'primary' => true];
-            $quickActions[] = ['label' => 'Tambah note', 'route' => route('notes.create'), 'primary' => false];
-            $quickActions[] = ['label' => 'Member', 'route' => route('members.index'), 'primary' => false];
-        }
-
-        if ($user?->hasAnyRole(['super_admin', 'pengurus_keuangan'])) {
-            $quickActions[] = ['label' => 'Catat kas', 'route' => route('cash-transactions.create'), 'primary' => false];
-        }
     @endphp
+
     <div class="dashboard-shell sidebar-shell">
         <aside class="sidebar">
             <div class="sidebar-brand">
@@ -33,30 +23,29 @@
 
             <nav class="sidebar-nav">
                 <a href="{{ route('dashboard') }}" class="sidebar-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <span>•</span>
                     <strong>Dashboard</strong>
                 </a>
 
                 @if ($user?->hasAnyRole(['super_admin', 'mentor']))
                     <div class="sidebar-group-label">Pembinaan</div>
-                    <a href="{{ route('members.index') }}" class="sidebar-link {{ request()->routeIs('members.index') || request()->routeIs('members.create') || request()->routeIs('members.edit') || request()->routeIs('members.show') ? 'active' : '' }}"><span>01</span><strong>Member</strong></a>
-                    <a href="{{ route('members.hierarchy') }}" class="sidebar-link {{ request()->routeIs('members.hierarchy') ? 'active' : '' }}"><span>02</span><strong>Kaka Tingkat</strong></a>
-                    <a href="{{ route('activities.index') }}" class="sidebar-link {{ request()->routeIs('activities.*') || request()->routeIs('activities.calendar') ? 'active' : '' }}"><span>03</span><strong>Kegiatan</strong></a>
-                    <a href="{{ route('notes.index') }}" class="sidebar-link {{ request()->routeIs('notes.*') ? 'active' : '' }}"><span>04</span><strong>Monitoring</strong></a>
-                    <a href="{{ route('targets.index') }}" class="sidebar-link {{ request()->routeIs('targets.*') ? 'active' : '' }}"><span>05</span><strong>Target</strong></a>
-                    <a href="{{ route('progress.index') }}" class="sidebar-link {{ request()->routeIs('progress.*') ? 'active' : '' }}"><span>06</span><strong>Progress</strong></a>
+                    <a href="{{ route('members.index') }}" class="sidebar-link {{ request()->routeIs('members.index') || request()->routeIs('members.create') || request()->routeIs('members.edit') || request()->routeIs('members.show') ? 'active' : '' }}"><strong>Member</strong></a>
+                    <a href="{{ route('members.hierarchy') }}" class="sidebar-link {{ request()->routeIs('members.hierarchy') ? 'active' : '' }}"><strong>Kaka Tingkat</strong></a>
+                    <a href="{{ route('activities.index') }}" class="sidebar-link {{ request()->routeIs('activities.*') || request()->routeIs('activities.calendar') ? 'active' : '' }}"><strong>Kegiatan</strong></a>
+                    <a href="{{ route('notes.index') }}" class="sidebar-link {{ request()->routeIs('notes.*') ? 'active' : '' }}"><strong>Monitoring</strong></a>
+                    <a href="{{ route('targets.index') }}" class="sidebar-link {{ request()->routeIs('targets.*') ? 'active' : '' }}"><strong>Target</strong></a>
+                    <a href="{{ route('progress.index') }}" class="sidebar-link {{ request()->routeIs('progress.*') ? 'active' : '' }}"><strong>Progress</strong></a>
                 @endif
 
                 @if ($user?->hasAnyRole(['super_admin', 'pengurus_keuangan']))
                     <div class="sidebar-group-label">Keuangan</div>
-                    <a href="{{ route('contributions.index') }}" class="sidebar-link {{ request()->routeIs('contributions.*') || request()->routeIs('contribution-payments.*') || request()->routeIs('cash-accounts.*') || request()->routeIs('cash-transactions.*') ? 'active' : '' }}"><span>07</span><strong>Keuangan</strong></a>
+                    <a href="{{ route('contributions.index') }}" class="sidebar-link {{ request()->routeIs('contributions.*') || request()->routeIs('contribution-payments.*') || request()->routeIs('cash-accounts.*') || request()->routeIs('cash-transactions.*') ? 'active' : '' }}"><strong>Keuangan</strong></a>
                 @endif
 
                 @if ($user?->hasRole('super_admin'))
                     <div class="sidebar-group-label">Pengaturan</div>
-                    <a href="{{ route('operators.index') }}" class="sidebar-link {{ request()->routeIs('operators.*') ? 'active' : '' }}"><span>08</span><strong>Monitoring Pengurus</strong></a>
-                    <a href="{{ route('ideal-positions.index') }}" class="sidebar-link {{ request()->routeIs('ideal-positions.*') || request()->routeIs('position-candidates.*') ? 'active' : '' }}"><span>09</span><strong>Pengurus Ideal</strong></a>
-                    <a href="{{ route('categories.index') }}" class="sidebar-link {{ request()->routeIs('categories.*') || request()->routeIs('subcategories.*') ? 'active' : '' }}"><span>10</span><strong>Master Aktivitas</strong></a>
+                    <a href="{{ route('operators.index') }}" class="sidebar-link {{ request()->routeIs('operators.*') ? 'active' : '' }}"><strong>Monitoring Pengurus</strong></a>
+                    <a href="{{ route('ideal-positions.index') }}" class="sidebar-link {{ request()->routeIs('ideal-positions.*') || request()->routeIs('position-candidates.*') ? 'active' : '' }}"><strong>Pengurus Ideal</strong></a>
+                    <a href="{{ route('categories.index') }}" class="sidebar-link {{ request()->routeIs('categories.*') || request()->routeIs('subcategories.*') ? 'active' : '' }}"><strong>Master Aktivitas</strong></a>
                 @endif
             </nav>
 
@@ -64,9 +53,9 @@
                 <div class="sidebar-help">
                     <span class="mono-eyebrow">ALUR KERJA</span>
                     @if ($user?->hasAnyRole(['super_admin', 'mentor']))
-                        <p>Input kegiatan → tag member → tambah note/progress → evaluasi target.</p>
+                        <p>Input kegiatan, tag member, lalu catat note atau progress.</p>
                     @else
-                        <p>Buat tagihan → input pembayaran → catat kas → cek outstanding.</p>
+                        <p>Buat tagihan, input pembayaran, lalu catat kas.</p>
                     @endif
                 </div>
                 <div class="user-chip">
@@ -86,13 +75,6 @@
                     <div class="mono-eyebrow">PANEL PENGURUS</div>
                     <h1 class="content-title">{{ $title ?? 'Dashboard' }}</h1>
                 </div>
-                @if (count($quickActions) > 0)
-                    <div class="topbar-actions">
-                        @foreach (array_slice($quickActions, 0, 4) as $action)
-                            <a href="{{ $action['route'] }}" class="button {{ $action['primary'] ? 'button-primary' : 'button-secondary' }}">{{ $action['label'] }}</a>
-                        @endforeach
-                    </div>
-                @endif
             </header>
 
             @if (session('status'))
