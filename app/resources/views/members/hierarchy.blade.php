@@ -12,13 +12,13 @@
             </div>
         </div>
         <div class="hero-actions">
-            <a href="{{ route('members.index') }}" class="button button-secondary">Buka master member</a>
+            <a href="{{ route('members.index') }}" class="button button-secondary">Master member</a>
             <a href="{{ route('members.create') }}" class="button button-primary">Tambah member</a>
         </div>
     </section>
 
-    <section class="content-grid content-grid-wide-left">
-        <article class="feature-card">
+    <section class="content-grid content-grid-wide-left hierarchy-workspace">
+        <article class="feature-card hierarchy-panel">
             <div class="section-heading">
                 <div>
                     <div class="mono-eyebrow">STRUKTUR UTAMA</div>
@@ -26,13 +26,16 @@
                 </div>
             </div>
 
-            <div class="hierarchy-list">
+            <div class="compact-tree">
                 @forelse ($leaders as $leader)
-                    <div class="hierarchy-card">
-                        <div class="hierarchy-node hierarchy-root">
-                            <strong>{{ $leader->name }}</strong>
-                            <span>{{ $leader->code }} · {{ $leader->target_role ?: 'Kaka tingkat' }}</span>
-                            <form method="POST" action="{{ route('members.hierarchy.update', $leader) }}" class="inline-assign-form">
+                    <div class="tree-group">
+                        <div class="tree-row tree-root">
+                            <div class="tree-connector"></div>
+                            <div class="tree-person">
+                                <strong>{{ $leader->name }}</strong>
+                                <span>{{ $leader->code }} · {{ $leader->target_role ?: 'Kaka tingkat' }}</span>
+                            </div>
+                            <form method="POST" action="{{ route('members.hierarchy.update', $leader) }}" class="tree-assign-form">
                                 @csrf
                                 @method('PATCH')
                                 <select name="kaka_tingkat_id">
@@ -43,17 +46,20 @@
                                         @endif
                                     @endforeach
                                 </select>
-                                <button type="submit" class="button button-ghost-sm">Simpan</button>
+                                <button type="submit" class="tree-save-button">Simpan</button>
                             </form>
                         </div>
 
-                        <div class="hierarchy-children">
+                        <div class="tree-children">
                             @foreach ($leader->adikTingkat as $adik)
-                                <div class="hierarchy-branch">
-                                    <div class="hierarchy-node">
-                                        <strong>{{ $adik->name }}</strong>
-                                        <span>{{ $adik->code }} · {{ $adik->target_role ?: 'Adik tingkat' }}</span>
-                                        <form method="POST" action="{{ route('members.hierarchy.update', $adik) }}" class="inline-assign-form">
+                                <div class="tree-branch">
+                                    <div class="tree-row">
+                                        <div class="tree-connector"></div>
+                                        <div class="tree-person">
+                                            <strong>{{ $adik->name }}</strong>
+                                            <span>{{ $adik->code }} · {{ $adik->target_role ?: 'Adik tingkat' }}</span>
+                                        </div>
+                                        <form method="POST" action="{{ route('members.hierarchy.update', $adik) }}" class="tree-assign-form">
                                             @csrf
                                             @method('PATCH')
                                             <select name="kaka_tingkat_id">
@@ -64,17 +70,20 @@
                                                     @endif
                                                 @endforeach
                                             </select>
-                                            <button type="submit" class="button button-ghost-sm">Simpan</button>
+                                            <button type="submit" class="tree-save-button">Simpan</button>
                                         </form>
                                     </div>
 
                                     @if ($adik->adikTingkat->isNotEmpty())
-                                        <div class="hierarchy-subchildren">
+                                        <div class="tree-subchildren">
                                             @foreach ($adik->adikTingkat as $subadik)
-                                                <div class="hierarchy-node hierarchy-node-small">
-                                                    <strong>{{ $subadik->name }}</strong>
-                                                    <span>{{ $subadik->code }}</span>
-                                                    <form method="POST" action="{{ route('members.hierarchy.update', $subadik) }}" class="inline-assign-form">
+                                                <div class="tree-row tree-row-small">
+                                                    <div class="tree-connector"></div>
+                                                    <div class="tree-person">
+                                                        <strong>{{ $subadik->name }}</strong>
+                                                        <span>{{ $subadik->code }} · {{ $subadik->target_role ?: 'Adik tingkat' }}</span>
+                                                    </div>
+                                                    <form method="POST" action="{{ route('members.hierarchy.update', $subadik) }}" class="tree-assign-form">
                                                         @csrf
                                                         @method('PATCH')
                                                         <select name="kaka_tingkat_id">
@@ -85,7 +94,7 @@
                                                                 @endif
                                                             @endforeach
                                                         </select>
-                                                        <button type="submit" class="button button-ghost-sm">Simpan</button>
+                                                        <button type="submit" class="tree-save-button">Simpan</button>
                                                     </form>
                                                 </div>
                                             @endforeach
@@ -101,20 +110,22 @@
             </div>
         </article>
 
-        <article class="feature-card">
+        <article class="feature-card hierarchy-panel">
             <div class="section-heading">
                 <div>
                     <div class="mono-eyebrow">ANGGOTA MANDIRI</div>
-                    <h2>Belum terhubung ke struktur</h2>
+                    <h2>Belum terhubung</h2>
                 </div>
             </div>
 
-            <div class="stack-tight">
+            <div class="compact-tree">
                 @forelse ($independentMembers as $member)
-                    <div class="hierarchy-node hierarchy-node-small">
-                        <strong>{{ $member->name }}</strong>
-                        <span>{{ $member->code }}</span>
-                        <form method="POST" action="{{ route('members.hierarchy.update', $member) }}" class="inline-assign-form">
+                    <div class="tree-row tree-row-independent">
+                        <div class="tree-person">
+                            <strong>{{ $member->name }}</strong>
+                            <span>{{ $member->code }} · {{ $member->target_role ?: 'Belum ada target' }}</span>
+                        </div>
+                        <form method="POST" action="{{ route('members.hierarchy.update', $member) }}" class="tree-assign-form">
                             @csrf
                             @method('PATCH')
                             <select name="kaka_tingkat_id">
@@ -125,7 +136,7 @@
                                     @endif
                                 @endforeach
                             </select>
-                            <button type="submit" class="button button-ghost-sm">Simpan</button>
+                            <button type="submit" class="tree-save-button">Simpan</button>
                         </form>
                     </div>
                 @empty
